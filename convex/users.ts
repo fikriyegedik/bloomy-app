@@ -17,8 +17,9 @@ export const createUser = mutation({
         .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
         .first()
 
+
         if(existingUser) return;
-        
+
         //create a user in database
         await ctx.db.insert("users", { userName: args.userName,
         fullName: args.fullName, email: args.email, bio: args.bio, image: args.image, followers: 0, following: 0, posts: 0, clerkId: args.clerkId });
