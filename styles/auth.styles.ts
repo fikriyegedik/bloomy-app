@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 18,
-        backgroundColor: "rgba(74, 222, 128, 0.15)",
+        backgroundColor: "rgba(162, 89, 255, 0.15)",
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 20,
@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
         color: COLORS.grey,
         letterSpacing: 1,
         textTransform: "lowercase",
+        textAlign: "center",
     },
     illustrationContainer: {
         flex: 1,

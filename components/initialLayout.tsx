@@ -30,7 +30,7 @@ export default function InitialLayout() {
         }
         // If the user IS signed in but IS on an auth screen, redirect to main app
         else if (isSignedIn && inAuthScreen) {
-            router.replace('/(auth)/login')
+            router.replace('/(tabs)')
         }
 
     }, [isLoaded, isSignedIn, segments]) // dependencies for the effect

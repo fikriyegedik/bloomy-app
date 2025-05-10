@@ -29,7 +29,7 @@ export default function Login() {
                     <Ionicons name='balloon-outline' size={32} color={COLORS.primary} />
                 </View>
                 <Text style={styles.appName}>bloomy</Text>
-                <Text style={styles.tagline}>don't miss anything</Text>
+                <Text style={styles.tagline}>Let your pet's personality shine with every photo!</Text>
 
             </View>
             <View style={styles.illustrationContainer}>

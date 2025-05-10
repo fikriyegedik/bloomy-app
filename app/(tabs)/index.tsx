@@ -1,15 +1,20 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/auth.styles";
 import { Link } from "expo-router";
+import { useAuth } from "@clerk/clerk-expo";
 
 export default function Index() {
+
+  const { signOut } = useAuth();
+
   return (
     <View
       style={styles.container}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Image source={require("./../../assets/images/icon.png")} style={{ width: 200, height: 200 }} />
-      <Link href="/notifications"><Text>Notifications</Text></Link>
+      <TouchableOpacity onPress={() => signOut()}>
+        <Text style={{color: 'white'}}>SignOut</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
