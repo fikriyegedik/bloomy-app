@@ -26,10 +26,10 @@ export default function Login() {
         <View style={styles.container}>
             <View style={styles.brandSection}>
                 <View style={styles.logoContainer}>
-                    <Ionicons name='balloon-outline' size={32} color={COLORS.primary} />
+                    <Ionicons name='paw-outline' size={32} color={COLORS.primary} />
                 </View>
-                <Text style={styles.appName}>bloomy</Text>
-                <Text style={styles.tagline}>Let your pet's personality shine with every photo!</Text>
+                <Text style={styles.appName}>whiskr</Text>
+                <Text style={styles.tagline}>where every whisker tells a story.</Text>
 
             </View>
             <View style={styles.illustrationContainer}>
