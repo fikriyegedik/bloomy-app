@@ -10,6 +10,7 @@ import React, { useState } from 'react'
 import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { api } from '../../convex/_generated/api'
 import { styles } from '../../styles/create.styles'
+import { set } from 'date-fns'
 
 export default function CreateScreen() {
 
@@ -50,15 +51,18 @@ export default function CreateScreen() {
       })
       if (uploadResult.status !== 200) throw new Error("Failed to upload image")
       const { storageId } = JSON.parse(uploadResult.body)
-    await createPost({ caption, storageId })
+      await createPost({ caption, storageId })
+
+      setSelectedImage(null)
+      setCaption('')
 
       router.push('/(tabs)')
 
-    }catch (error) {
-      console.log(error, "error")
-    } finally {
-      setIsSharing(false)
-    }
+      }catch (error) {
+        console.log(error, "error")
+      } finally {
+        setIsSharing(false)
+      }
   }
 
   if (!selectedImage) {
