@@ -20,7 +20,7 @@
     },
     headerTitle: {
         fontSize: 24,
-        fontFamily: "JetBrainsMono-Italic",
+        fontFamily: "BukhariScript-Regular",
         color: COLORS.primary,
     },
     storiesContainer: {

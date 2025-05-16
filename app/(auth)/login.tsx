@@ -1,10 +1,10 @@
+import { useSSO } from '@clerk/clerk-expo'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { useRouter } from 'expo-router'
 import React from 'react'
-import { Image, Text, View, TouchableOpacity} from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { COLORS } from '../../constants/theme'
 import { styles } from '../../styles/auth.styles'
-import { useRouter } from 'expo-router'
-import { useSSO } from '@clerk/clerk-expo'
 
 export default function Login() {
     const { startSSOFlow } = useSSO()
@@ -26,9 +26,13 @@ export default function Login() {
         <View style={styles.container}>
             <View style={styles.brandSection}>
                 <View style={styles.logoContainer}>
-                    <Ionicons name='paw-outline' size={32} color={COLORS.primary} />
+                    {/* <Ionicons name='paw-outline' size={32} color={COLORS.primary} /> */}
+
+                    <Image source={require('./../.././assets/images/logo-white-whiskr.png')} style={styles.logo} />
+
                 </View>
-                <Text style={styles.appName}>whiskr</Text>
+
+                <Text style={styles.appName}>whiskr circle</Text>
                 <Text style={styles.tagline}>where every whisker tells a story.</Text>
 
             </View>

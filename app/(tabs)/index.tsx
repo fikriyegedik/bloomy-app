@@ -1,18 +1,27 @@
-import { Alert, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../../styles/feed.styles";
-import { useAuth } from "@clerk/clerk-expo";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { COLORS } from "../../constants/theme";
-import { STORIES } from "@/constants/mock-data";
-import Story from "@/components/Story";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
 import { Loader } from "@/components/Loader";
 import Post from "@/components/Post";
+import StoriesSection from "@/components/Stories";
+import { useAuth } from "@clerk/clerk-expo";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useQuery } from "convex/react";
+import { useState } from "react";
+import { Alert, FlatList, RefreshControl, Text, TouchableOpacity, View } from "react-native";
+import { COLORS } from "../../constants/theme";
+import { api } from "../../convex/_generated/api";
+import { styles } from "../../styles/feed.styles";
 export default function Index() {
 
   const { signOut } = useAuth();
+  const [refreshing , setRefreshing] = useState(false)
 
+  // this does nothing
+  const onRefresh = () => {
+    setRefreshing(true)
+    setTimeout(() => {
+      setRefreshing(false)
+      //tanstack query refetch
+    }, 2000)
+  }
   const handleSignOut = () => {
   Alert.alert(
     "Hold Up!",
@@ -38,7 +47,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>whiskr</Text>
+        <Text style={styles.headerTitle}>whiskr circle</Text>
         <TouchableOpacity onPress={handleSignOut}>
           <Ionicons name="log-out-outline" size={24} color={COLORS.white} />
         </TouchableOpacity>
@@ -51,20 +60,13 @@ export default function Index() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom:60}}
         ListHeaderComponent={<StoriesSection />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={COLORS.primary}/>
+        }
       />
 
     </View>
   );
-}
-
-const StoriesSection = () => {
-  return (
-    <ScrollView horizontal showsVerticalScrollIndicator={false} style={styles.storiesContainer}>
-      {STORIES.map((story) => (
-        <Story key={story.id} story={story} />
-      ))}
-    </ScrollView>
-  )
 }
 
 const NoPostsFound = () => {

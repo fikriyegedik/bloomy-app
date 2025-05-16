@@ -1,6 +1,6 @@
 // styles/auth.styles.ts
 import { COLORS } from "@/constants/theme";
-import { StyleSheet, Dimensions } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -14,18 +14,23 @@ export const styles = StyleSheet.create({
         marginTop: height * 0.12,
     },
     logoContainer: {
-        width: 60,
-        height: 60,
+        width: 80,
+        height: 80,
         borderRadius: 18,
         backgroundColor: "rgba(162, 89, 255, 0.15)",
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 20,
     },
+    logo: {
+        width: 60,
+        height: 60,
+
+    },
     appName: {
         fontSize: 42,
         fontWeight: "700",
-        fontFamily: "JetBrainsMono-Italic",
+        fontFamily: "BukhariScript-Regular",
         color: COLORS.primary,
         letterSpacing: 0.5,
         marginBottom: 8,

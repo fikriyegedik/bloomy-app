@@ -167,6 +167,16 @@ export const deletePosts = mutation({
             await ctx.db.delete(bookmark._id)
         }
 
+        //delete notifications
+        const notifications = await ctx.db.query("notifications")
+        .withIndex("by_post", (q) => q.eq("postId", args.postId))
+        .collect()
+
+        for (const notification of notifications) {
+            await ctx.db.delete(notification._id)
+        }
+
+
         //delete storage file
         await ctx.storage.delete(post.storageId)
 
@@ -179,3 +189,19 @@ export const deletePosts = mutation({
         })
     }
 })
+
+export const getPostsByUser = query ({
+    args: {
+        userId: v.optional(v.id("users"))
+    },
+    handler : async (ctx, args) => {
+        const user = args.userId ? await ctx.db.get(args.userId) : await getAuthenticatedUser(ctx)
+        if (!user) throw new Error("User not found");
+
+        const posts = await ctx.db.query("posts")
+        .withIndex("by_user", (q) => q.eq("userId", args.userId || user._id))
+        .collect()
+        return posts
+    }
+})
+
